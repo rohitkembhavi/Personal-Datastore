@@ -1,0 +1,364 @@
+<%= form_with model: @profile, url: url, method: method, id: 'profile-form', class: 'm-5', html: {autocomplete: "off"} do |form| %>
+    
+    <h4>Personal Details</h4>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                First Name*
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[first_name]",
+                @profile&.first_name || '',
+                placeholder: 'Enter first name',
+                class: 'form-control',
+                required: true
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Last Name*
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[last_name]",
+                @profile&.last_name || '',
+                placeholder: 'Enter Last name',
+                class: 'form-control',
+                required: true
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Email
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[email]",
+                @profile&.email || '',
+                type: "email",
+                placeholder: 'Enter Email',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Contact Number
+            </span>
+        </div>
+        <div class="col-6">
+            <%= number_field_tag "profiles[contact_no]",
+                @profile&.contact_no || '',
+                placeholder: 'Enter contact',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Birth Date
+            </span>
+        </div>
+        <div class="col-6">
+            <%= date_field_tag "profiles[birth_date]",
+                @profile&.birth_date || '',
+                placeholder: 'Enter DOB',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Gender
+            </span>
+        </div>
+        <div class="col-6">
+            <%= select_tag "profiles[birth_date]",
+                options_for_select([
+                    ['male', 0],
+                    ['female', 1],
+                    ['other', 2]
+                ], @profile&.gender),
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Country
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[country]",
+                @profile&.country || '',
+                placeholder: 'Enter Country',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                City
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[city]",
+                @profile&.city || '',
+                placeholder: 'Enter City',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Address
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_area_tag "profiles[address]",
+                @profile&.address || '',
+                placeholder: 'Enter Adress',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+               Blood Group
+            </span>
+        </div>
+        <div class="col-6">
+            <%= select_tag "profiles[blood_group]",
+                options_for_select(Profile.blood_groups.to_a, @profile&.blood_group || 'A+'),
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Mother's Name
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[mother_name]",
+                @profile&.mother_name || '',
+                placeholder: "Enter Mother's Name",
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Father's Name
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[father_name]",
+                @profile&.father_name || '',
+                placeholder: "Enter Father's Name",
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <h4>Profession Details</h4>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Profession
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[profession]",
+                @profile&.profession || '',
+                placeholder: "Enter Profession",
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Profession Details
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_area_tag "profiles[profession_details]",
+                @profile&.profession_details || '',
+                placeholder: 'Enter Profession Details',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Current Work Country
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[current_work_country]",
+                @profile&.current_work_country || '',
+                placeholder: "Enter Current Work Country",
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Current Work City
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "profiles[current_work_country]",
+                @profile&.current_work_city || '',
+                placeholder: "Enter Current Work City",
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Current Work Address
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_area_tag "profiles[current_work_country]",
+                @profile&.current_work_country || '',
+                placeholder: 'Enter Current Work Address',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <h4>Relation</h4>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+               Relation
+            </span>
+        </div>
+        <div class="col-6">
+            <%= select_tag "profiles[relation]",
+                options_for_select(Profile.relations.keys.map(&:capitalize), Profile.relations[@profile&.relation] || 0),
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                First Meet Details
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_area_tag "profiles[first_meet_details]",
+                @profile&.first_meet_details || '',
+                placeholder: 'Enter the details of your First meet with this profile subject',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Last Meet Details
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_area_tag "profiles[last_meet_details]",
+                @profile&.last_meet_details || '',
+                placeholder: 'Enter the details of your Last meet with this profile subject',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Qualities
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_area_tag "profiles[qualities]",
+                @profile&.qualities || '',
+                placeholder: 'Enter Qualities',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+               Connection Score
+            </span>
+        </div>
+        <div class="col-6">
+            <%= select_tag "profiles[relation]",
+                options_for_select(Profile.connection_scores.keys.map(&:capitalize), Profile.connection_scores[@profile&.connection_score] || 0),
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                Interest Areas
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_area_tag "profiles[interest_areas_list]",
+                @profile&.interest_areas_list || '',
+                placeholder: 'Enter the Interest Areas for this profile subject',
+                class: 'form-control'
+            %> 
+        </div>
+    </div>
+
+    
+
+    <%= button_to "Submit", class: 'form-control' do %>
+        Submit
+    <% end %>
+    
+
+<% end %>

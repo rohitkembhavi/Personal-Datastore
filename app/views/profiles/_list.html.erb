@@ -1,0 +1,9 @@
+<div class="bs-pb-3">
+    <% if @profiles.present? %>
+        <div class="row m-4">
+            <%= render partial: 'profile', collection: @profiles %>
+        </div>
+    <% else %>
+        <%= render "empty" %>
+    <% end %>
+</div>
