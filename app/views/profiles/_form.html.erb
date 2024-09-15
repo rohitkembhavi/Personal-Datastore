@@ -151,7 +151,7 @@
         </div>
         <div class="col-6">
             <%= select_tag "profiles[blood_group]",
-                options_for_select(Profile.blood_groups.to_a, @profile&.blood_group || 'A+'),
+                options_for_select(Profile.blood_groups.keys, @profile&.blood_group),
                 class: 'form-control'
             %> 
         </div>
@@ -274,7 +274,7 @@
         </div>
         <div class="col-6">
             <%= select_tag "profiles[relation]",
-                options_for_select(Profile.relations.keys.map(&:capitalize), Profile.relations[@profile&.relation] || 0),
+                options_for_select(Profile.relations.keys.map { |relation| [relation.capitalize, relation] }, @profile&.relation),
                 class: 'form-control'
             %> 
         </div>
@@ -332,8 +332,8 @@
             </span>
         </div>
         <div class="col-6">
-            <%= select_tag "profiles[relation]",
-                options_for_select(Profile.connection_scores.keys.map(&:capitalize), Profile.connection_scores[@profile&.connection_score] || 0),
+            <%= select_tag "profiles[connection_score]",
+                options_for_select(Profile.connection_scores.keys.map { |score| [score.capitalize, score] }, @profile&.connection_score),
                 class: 'form-control'
             %> 
         </div>
@@ -354,9 +354,7 @@
         </div>
     </div>
 
-    
-
-    <%= button_to "Submit", class: 'form-control' do %>
+    <%= button_to "Submit", class: 'form-control btn btn-primary' do %>
         Submit
     <% end %>
     

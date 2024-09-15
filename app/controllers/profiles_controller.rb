@@ -1,7 +1,6 @@
 class ProfilesController < ApplicationController
-  
   before_action :find_profile, except: [:index, :new, :create]
-  
+
   def index
     @profiles = Profile.all
   end
@@ -26,6 +25,16 @@ class ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
+      flash[:success] = "Profile saved successfully!"
+      redirect_to profiles_path
+    else
+      flash.keep[:error] = "Error saving Profile."
+      redirect_to edit_profile_path
+    end
+  end
+
+  def destroy
+    if @profile.destroy
       flash[:success] = "Profile saved successfully!"
       redirect_to profiles_path
     else
@@ -71,5 +80,4 @@ class ProfilesController < ApplicationController
   def find_profile
     @profile = Profile.find params[:id]
   end
-
 end

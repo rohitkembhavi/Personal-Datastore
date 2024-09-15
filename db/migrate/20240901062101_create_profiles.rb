@@ -33,7 +33,7 @@ class CreateProfiles < ActiveRecord::Migration[7.2]
       t.text :activity_report
       t.text :personal_traits
       t.integer :connection_score
-      t.string :interest_areas_list, array: true, default: []
+      t.text :interest_areas_list
 
       t.timestamps
     end

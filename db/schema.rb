@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_01_062101) do
     t.text "activity_report"
     t.text "personal_traits"
     t.integer "connection_score"
-    t.string "interest_areas_list", default: [], array: true
+    t.text "interest_areas_list"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
