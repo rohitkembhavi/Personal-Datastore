@@ -1,0 +1,36 @@
+<%= form_with model: @custom_field, url: url, method: method, id: 'custom-field-form' do %>
+
+    <div class="row py-3">
+      <div class="col-4">
+          <span class='form-label text-body-secondary'>
+              Name*
+          </span>
+      </div>
+      <div class="col-6">
+          <%= text_field_tag "custom_field[name]",
+              @profile&.first_name || '',
+              placeholder: 'Enter a name for the custom field',
+              class: 'form-control',
+              required: true
+          %> 
+      </div>
+    </div>
+
+    <div class="row py-3">
+      <div class="col-4">
+          <span class='form-label text-body-secondary'>
+              Type*
+          </span>
+      </div>
+      <div class="col-6">
+          <%= select_tag "custom_field[type]",
+              options_for_select(CustomField.value_types.keys, @custom_field&.value_type),
+              class: 'form-control'
+          %> 
+      </div>
+    </div>
+
+  <%= button_to "Submit", class: 'form-control btn btn-primary' do %>
+      Submit
+  <% end %>
+<% end %>

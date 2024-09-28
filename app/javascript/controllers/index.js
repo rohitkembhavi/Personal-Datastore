@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import CustomFieldModalController from "./custom_field_modal_controller"
+application.register("custom-field-modal", CustomFieldModalController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

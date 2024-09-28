@@ -10,9 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_01_062101) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_22_072100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "custom_field_values", force: :cascade do |t|
+    t.string "value"
+    t.bigint "custom_fields_id"
+    t.bigint "profiles_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["custom_fields_id"], name: "index_custom_field_values_on_custom_fields_id"
+    t.index ["profiles_id"], name: "index_custom_field_values_on_profiles_id"
+  end
+
+  create_table "custom_fields", force: :cascade do |t|
+    t.string "name"
+    t.integer "value_type"
+    t.bigint "profiles_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profiles_id"], name: "index_custom_fields_on_profiles_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string "first_name", null: false
@@ -46,4 +65,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_01_062101) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "custom_field_values", "custom_fields", column: "custom_fields_id"
+  add_foreign_key "custom_field_values", "profiles", column: "profiles_id"
+  add_foreign_key "custom_fields", "profiles", column: "profiles_id"
 end

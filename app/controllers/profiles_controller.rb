@@ -11,6 +11,7 @@ class ProfilesController < ApplicationController
   def create
     profile = Profile.new(profile_params)
 
+    # TODO fix flash not working issue
     if profile.save
       flash[:success] = "Profile saved successfully!"
       redirect_to profiles_path
@@ -24,6 +25,7 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    # TODO fix flash not working issue
     if @profile.update(profile_params)
       flash[:success] = "Profile saved successfully!"
       redirect_to profiles_path

@@ -1,0 +1,27 @@
+<%= turbo_frame_tag "new_custom_field" do %>
+
+    <div class="modal fade" 
+        id="shareRecipeModal" 
+        tabindex="-1" 
+        aria-labelledby="newItemRemoteModalLabel" 
+        aria-hidden="true" 
+        data-controller="custom-field-modal"
+        data-action="turbo:before-render@document->custom-field-modal#hideBeforeRender">
+        
+        <!-- TODO Find an easy way to for the data-action-->
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" id="modal_content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="newItemRemoteModalLabel"><%= title %></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body new_custom_field_body" id="new_custom_field_body">
+                    <%= yield %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% end %>

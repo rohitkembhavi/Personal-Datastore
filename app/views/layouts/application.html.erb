@@ -19,5 +19,6 @@
 
   <body>
     <%= yield %>
+    <%= turbo_frame_tag "new_custom_field", target: "_top" %>
   </body>
 </html>
