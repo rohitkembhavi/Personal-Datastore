@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_072100) do
     t.bigint "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["custom_field_id", "profile_id"], name: "index_custom_field_values_on_custom_field_id_and_profile_id", unique: true
     t.index ["custom_field_id"], name: "index_custom_field_values_on_custom_field_id"
     t.index ["profile_id"], name: "index_custom_field_values_on_profile_id"
   end

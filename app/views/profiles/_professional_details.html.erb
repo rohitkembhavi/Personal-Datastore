@@ -7,7 +7,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[profession]",
+        <%= text_field_tag :profession,
             @profile&.profession || '',
             placeholder: "Enter Profession",
             class: 'form-control'
@@ -22,7 +22,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_area_tag "profiles[profession_details]",
+        <%= text_area_tag :profession_details,
             @profile&.profession_details || '',
             placeholder: 'Enter Profession Details',
             class: 'form-control'
@@ -37,7 +37,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[current_work_country]",
+        <%= text_field_tag :current_work_country,
             @profile&.current_work_country || '',
             placeholder: "Enter Current Work Country",
             class: 'form-control'
@@ -52,7 +52,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[current_work_country]",
+        <%= text_field_tag :current_work_city,
             @profile&.current_work_city || '',
             placeholder: "Enter Current Work City",
             class: 'form-control'
@@ -67,8 +67,8 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_area_tag "profiles[current_work_country]",
-            @profile&.current_work_country || '',
+        <%= text_area_tag :current_work_address,
+            @profile&.current_work_address || '',
             placeholder: 'Enter Current Work Address',
             class: 'form-control'
         %> 

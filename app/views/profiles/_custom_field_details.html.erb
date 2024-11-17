@@ -1,32 +1,36 @@
 <%#
     {
-        :first_name=>"Anoushka", 
-        :last_name=>"Divakar", 
-        :email=>"anoushka.divakar@mail.com", 
+        :first_name=>"john", 
+        :last_name=>"doe", 
+        :email=>"john.doe@mail.com", 
         :custom_field_values_attributes=>[
-            {:value=>"gorgeous girl", :custom_field_id=>2}
+            {:value=>"green", :custom_field_id=>2}
         ]
     }
  %>
-<%# https://stackoverflow.com/questions/2212622/accepts-nested-attributes-for-with-has-many-through-options %>
 
+<%# https://www.ombulabs.com/blog/learning/rails/nested-forms.html %>
 
 <h4>Custom Fields</h4>
 
-    
-<%= hidden_field_tag 'profiles[custom_field_values_attributes[][custom_field_id]]', CustomField.last.id  %>
+<% @custom_fields_with_values.each do |id, value_set| %>
 
-<div class="row py-3">
-    <div class="col-4">
-        <span class='form-label text-body-secondary'>
-            <%= CustomField.last.name %>
-        </span>
+    <%= hidden_field_tag 'custom_field_values_attributes[][id]', value_set[:cfv_id] if value_set[:cfv_id] %>
+    <%= hidden_field_tag 'custom_field_values_attributes[][custom_field_id]', id  %>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                <%= value_set[:name] %>
+            </span>
+        </div>
+        <div class="col-6">
+            <%= text_field_tag "custom_field_values_attributes[][value]",
+                value_set[:value_for_current_profile] || '',
+                placeholder: "Enter #{value_set[:name]}",
+                class: 'form-control'
+            %> 
+        </div>
     </div>
-    <div class="col-6">
-        <%= text_field_tag "profiles[custom_field_values_attributes[][value]]",
-            @profile&.profession || '',
-            placeholder: "Enter #{CustomField.last.name}",
-            class: 'form-control'
-        %> 
-    </div>
-</div>
+<% end %>
+    

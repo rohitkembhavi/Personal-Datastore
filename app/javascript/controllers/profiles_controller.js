@@ -7,6 +7,5 @@ export default class extends Controller {
   }
 
   test() {
-    debugger
   }
 }

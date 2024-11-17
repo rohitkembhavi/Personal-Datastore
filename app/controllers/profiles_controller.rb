@@ -1,11 +1,14 @@
 class ProfilesController < ApplicationController
-  before_action :find_profile, except: [:index, :new, :create]
+  before_action :find_profile, except: [ :index, :new, :create ]
+  before_action :load_cf_resources, only: [ :new, :edit ]
 
   def index
     @profiles = Profile.all
   end
 
   def new
+    @profile = Profile.new
+    @custom_fields_with_values = CustomField.all
   end
 
   def create
@@ -48,7 +51,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profiles).permit(
+    params.permit(
       :first_name,
       :last_name,
       :email,
@@ -77,12 +80,27 @@ class ProfilesController < ApplicationController
       :connection_score,
       :interest_areas_list,
       custom_field_values_attributes: [
-        :value, :custom_field_id
+        :id, :value, :custom_field_id
       ]
     )
   end
 
   def find_profile
     @profile = Profile.find params[:id]
+  end
+
+  def load_cf_resources
+    @custom_fields_with_values = {}
+    cf_arel = CustomField.includes(:custom_field_values)
+
+    cf_arel.map do |cf|
+      cfv = cf.custom_field_values.find { |cfv| cfv.profile_id == @profile.id }
+
+      @custom_fields_with_values[cf.id] = {
+        name: cf.name,
+        cfv_id: cfv&.id,
+        value_for_current_profile: cfv&.value
+      }
+    end
   end
 end

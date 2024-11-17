@@ -5,7 +5,7 @@
     <%= render 'personal_details' %>
     <%= render 'professional_details' %>
     <%= render 'relation_details' %>
-    <%= render 'custom_field_details' %>
+    <%= render 'custom_field_details' if @custom_fields_with_values.present? %>
 
     <%= button_to "Submit", class: 'form-control btn btn-primary' do %>
         Submit

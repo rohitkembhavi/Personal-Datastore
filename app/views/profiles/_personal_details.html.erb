@@ -7,7 +7,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[first_name]",
+        <%= text_field_tag :first_name,
             @profile&.first_name || '',
             placeholder: 'Enter first name',
             class: 'form-control',
@@ -23,7 +23,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[last_name]",
+        <%= text_field_tag :last_name,
             @profile&.last_name || '',
             placeholder: 'Enter Last name',
             class: 'form-control',
@@ -39,7 +39,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[email]",
+        <%= text_field_tag :email,
             @profile&.email || '',
             type: "email",
             placeholder: 'Enter Email',
@@ -55,7 +55,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= number_field_tag "profiles[contact_no]",
+        <%= number_field_tag :contact_no,
             @profile&.contact_no || '',
             placeholder: 'Enter contact',
             class: 'form-control'
@@ -70,7 +70,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= date_field_tag "profiles[birth_date]",
+        <%= date_field_tag :birth_date,
             @profile&.birth_date || '',
             placeholder: 'Enter DOB',
             class: 'form-control'
@@ -85,7 +85,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= select_tag "profiles[birth_date]",
+        <%= select_tag :gender,
             options_for_select([
                 ['male', 0],
                 ['female', 1],
@@ -103,7 +103,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[country]",
+        <%= text_field_tag :country,
             @profile&.country || '',
             placeholder: 'Enter Country',
             class: 'form-control'
@@ -118,7 +118,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[city]",
+        <%= text_field_tag :city,
             @profile&.city || '',
             placeholder: 'Enter City',
             class: 'form-control'
@@ -133,7 +133,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_area_tag "profiles[address]",
+        <%= text_area_tag :address,
             @profile&.address || '',
             placeholder: 'Enter Adress',
             class: 'form-control'
@@ -148,7 +148,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= select_tag "profiles[blood_group]",
+        <%= select_tag :blood_group,
             options_for_select(Profile.blood_groups.keys, @profile&.blood_group),
             class: 'form-control'
         %> 
@@ -162,7 +162,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[mother_name]",
+        <%= text_field_tag :mother_name,
             @profile&.mother_name || '',
             placeholder: "Enter Mother's Name",
             class: 'form-control'
@@ -177,7 +177,7 @@
         </span>
     </div>
     <div class="col-6">
-        <%= text_field_tag "profiles[father_name]",
+        <%= text_field_tag :father_name,
             @profile&.father_name || '',
             placeholder: "Enter Father's Name",
             class: 'form-control'
