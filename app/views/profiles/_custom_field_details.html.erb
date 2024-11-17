@@ -1,0 +1,32 @@
+<%#
+    {
+        :first_name=>"Anoushka", 
+        :last_name=>"Divakar", 
+        :email=>"anoushka.divakar@mail.com", 
+        :custom_field_values_attributes=>[
+            {:value=>"gorgeous girl", :custom_field_id=>2}
+        ]
+    }
+ %>
+<%# https://stackoverflow.com/questions/2212622/accepts-nested-attributes-for-with-has-many-through-options %>
+
+
+<h4>Custom Fields</h4>
+
+    
+<%= hidden_field_tag 'profiles[custom_field_values_attributes[][custom_field_id]]', CustomField.last.id  %>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            <%= CustomField.last.name %>
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag "profiles[custom_field_values_attributes[][value]]",
+            @profile&.profession || '',
+            placeholder: "Enter #{CustomField.last.name}",
+            class: 'form-control'
+        %> 
+    </div>
+</div>

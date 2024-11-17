@@ -1,0 +1,76 @@
+<h4>Profession Details</h4>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Profession
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag "profiles[profession]",
+            @profile&.profession || '',
+            placeholder: "Enter Profession",
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Profession Details
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_area_tag "profiles[profession_details]",
+            @profile&.profession_details || '',
+            placeholder: 'Enter Profession Details',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Current Work Country
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag "profiles[current_work_country]",
+            @profile&.current_work_country || '',
+            placeholder: "Enter Current Work Country",
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Current Work City
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag "profiles[current_work_country]",
+            @profile&.current_work_city || '',
+            placeholder: "Enter Current Work City",
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Current Work Address
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_area_tag "profiles[current_work_country]",
+            @profile&.current_work_country || '',
+            placeholder: 'Enter Current Work Address',
+            class: 'form-control'
+        %> 
+    </div>
+</div>

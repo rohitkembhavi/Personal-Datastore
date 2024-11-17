@@ -9,3 +9,6 @@ application.register("custom-field-modal", CustomFieldModalController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ProfilesController from "./profiles_controller"
+application.register("profiles", ProfilesController)

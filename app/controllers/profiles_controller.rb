@@ -75,7 +75,10 @@ class ProfilesController < ApplicationController
       :activity_report,
       :personal_traits,
       :connection_score,
-      :interest_areas_list
+      :interest_areas_list,
+      custom_field_values_attributes: [
+        :value, :custom_field_id
+      ]
     )
   end
 

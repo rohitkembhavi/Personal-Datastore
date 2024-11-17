@@ -16,12 +16,12 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_072100) do
 
   create_table "custom_field_values", force: :cascade do |t|
     t.string "value"
-    t.bigint "custom_fields_id"
-    t.bigint "profiles_id"
+    t.bigint "custom_field_id"
+    t.bigint "profile_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["custom_fields_id"], name: "index_custom_field_values_on_custom_fields_id"
-    t.index ["profiles_id"], name: "index_custom_field_values_on_profiles_id"
+    t.index ["custom_field_id"], name: "index_custom_field_values_on_custom_field_id"
+    t.index ["profile_id"], name: "index_custom_field_values_on_profile_id"
   end
 
   create_table "custom_fields", force: :cascade do |t|
@@ -66,7 +66,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_072100) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "custom_field_values", "custom_fields", column: "custom_fields_id"
-  add_foreign_key "custom_field_values", "profiles", column: "profiles_id"
+  add_foreign_key "custom_field_values", "custom_fields"
+  add_foreign_key "custom_field_values", "profiles"
   add_foreign_key "custom_fields", "profiles", column: "profiles_id"
 end
