@@ -1,9 +1,7 @@
 class Profile < ApplicationRecord
-
-  has_many :custom_fields
   has_many :custom_field_values
 
-  accepts_nested_attributes_for :custom_field_values
+  accepts_nested_attributes_for :custom_field_values, allow_destroy: true
 
   enum :gender, %w[ male female other ], prefix: :gender
   enum :blood_group, %w[a_positive a_negative b_positive b_negative ab_positive ab_negative o_positive o_negative], prefix: :blood_group

@@ -1,6 +1,8 @@
-<%= form_with model: @profile, url: url, method: method, id: 'profile-form', 
-            data: { controller: 'profiles', action: 'turbo:submit-start->profiles#test' },
-            class: 'm-5', html: {autocomplete: "off"} do |form| %>
+<%= form_with model: @profile, 
+                url: url, method: method, 
+                id: 'profile-form', 
+                data: { controller: 'profiles', action: 'turbo:submit-start->profiles#test' },
+                class: 'm-5', html: {autocomplete: "off"} do |form| %>
     
     <%= render 'personal_details' %>
     <%= render 'professional_details' %>

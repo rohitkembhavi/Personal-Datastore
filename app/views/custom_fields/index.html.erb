@@ -1,0 +1,32 @@
+<%= content_tag :div, class: "m-5" do %>
+
+  <h4>All Custom Fields</h4>
+  <div class="d-flex justify-content-end">
+    <%= link_to "Add a Custom Field",
+        new_custom_field_path,
+        class: "btn btn-primary" %>
+  </div>
+
+  <table class="table table-bordered mt-5">
+    <thead>
+      <tr>
+        <th scope="col" class="col-3">Custom Field Name</th>
+        <th scope="col" class="col-1">Type</th>
+        <th scope="col" class="col-1">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @custom_fields.each do |field| %>
+          <tr>
+              <td><%= field.name %></td>
+              <td><%= field.value_type %></td>
+              <td>
+                  <%= button_to custom_field_path(field), method: :delete, class: "btn" do %>
+                      <i class="bi bi-trash"></i>
+                  <% end %>
+              </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

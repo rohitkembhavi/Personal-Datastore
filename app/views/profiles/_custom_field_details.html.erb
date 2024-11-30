@@ -24,12 +24,37 @@
                 <%= value_set[:name] %>
             </span>
         </div>
+        
         <div class="col-6">
-            <%= text_field_tag "custom_field_values_attributes[][value]",
-                value_set[:value_for_current_profile] || '',
-                placeholder: "Enter #{value_set[:name]}",
-                class: 'form-control'
-            %> 
+            <% case value_set[:type] %>
+            <% when :text %>
+                <%= text_field_tag "custom_field_values_attributes[][value]",
+                                    value_set[:value_for_current_profile] || '',
+                                    placeholder: "Enter #{value_set[:name]}",
+                                    class: 'form-control' %>
+            <% when :number %>
+                <%= number_field_tag "custom_field_values_attributes[][value]",
+                                    value_set[:value_for_current_profile] || '',
+                                    placeholder: "Enter #{value_set[:name]}",
+                                    class: 'form-control' %>
+            <% when :boolean %>
+                <%# TRUE %>
+                <div class="form-check form-check-inline">
+                    <%= radio_button_tag "custom_field_values_attributes[][value]", 
+                            "true",
+                            ( value_set[:value_for_current_profile] == "true" ),
+                            class: "form-check-input" %>
+                    <label class="form-check-label" for="inlineCheckbox1">True</label>
+                </div>
+                <%# FALSE %>
+                <div class="form-check form-check-inline">
+                    <%= radio_button_tag "custom_field_values_attributes[][value]", 
+                            "false",
+                            ( value_set[:value_for_current_profile] == "false" ),
+                            class: "form-check-input" %>
+                    <label class="form-check-label" for="inlineCheckbox1">False</label>
+                </div>                
+            <% end %> 
         </div>
     </div>
 <% end %>

@@ -8,7 +8,6 @@ class ProfilesController < ApplicationController
 
   def new
     @profile = Profile.new
-    @custom_fields_with_values = CustomField.all
   end
 
   def create
@@ -94,10 +93,11 @@ class ProfilesController < ApplicationController
     cf_arel = CustomField.includes(:custom_field_values)
 
     cf_arel.map do |cf|
-      cfv = cf.custom_field_values.find { |cfv| cfv.profile_id == @profile.id }
+      cfv = cf.custom_field_values.find { |cfv| cfv.profile_id == @profile&.id }
 
       @custom_fields_with_values[cf.id] = {
         name: cf.name,
+        type: cf.value_type.to_sym,
         cfv_id: cfv&.id,
         value_for_current_profile: cfv&.value
       }

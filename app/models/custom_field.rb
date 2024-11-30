@@ -1,8 +1,9 @@
 class CustomField < ApplicationRecord
-  belongs_to :profile
-  has_many :custom_field_values
+  has_many :custom_field_values, dependent: :destroy
 
   enum :value_type, %w[number text boolean]
-  validates_presence_of :name
 
+  validates :name,
+            presence: true,
+            uniqueness: true
 end

@@ -3,7 +3,6 @@ class CreateCustomFields < ActiveRecord::Migration[7.2]
     create_table :custom_fields do |t|
       t.string :name
       t.integer :value_type
-      t.references :profiles, foreign_key: true
 
       t.timestamps
     end

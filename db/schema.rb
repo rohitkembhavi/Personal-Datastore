@@ -28,10 +28,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_072100) do
   create_table "custom_fields", force: :cascade do |t|
     t.string "name"
     t.integer "value_type"
-    t.bigint "profiles_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["profiles_id"], name: "index_custom_fields_on_profiles_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -69,5 +67,4 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_22_072100) do
 
   add_foreign_key "custom_field_values", "custom_fields"
   add_foreign_key "custom_field_values", "profiles"
-  add_foreign_key "custom_fields", "profiles", column: "profiles_id"
 end
