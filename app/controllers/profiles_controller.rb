@@ -1,11 +1,13 @@
 class ProfilesController < ApplicationController
-  before_action :find_profile, except: [:index, :new, :create]
+  before_action :find_profile, except: [ :index, :new, :create ]
+  before_action :load_cf_resources, only: [ :new, :edit ]
 
   def index
     @profiles = Profile.all
   end
 
   def new
+    @profile = Profile.new
   end
 
   def create
@@ -13,10 +15,10 @@ class ProfilesController < ApplicationController
 
     # TODO fix flash not working issue
     if profile.save
-      flash[:success] = "Profile saved successfully!"
+      flash[:notice] = "Profile saved successfully!"
       redirect_to profiles_path
     else
-      flash.keep[:error] = "Error saving Profile."
+      flash[:alert] = "Error saving Profile."
       redirect_to new_profile_path
     end
   end
@@ -27,20 +29,20 @@ class ProfilesController < ApplicationController
   def update
     # TODO fix flash not working issue
     if @profile.update(profile_params)
-      flash[:success] = "Profile saved successfully!"
+      flash[:notice] = "Profile saved successfully!"
       redirect_to profiles_path
     else
-      flash.keep[:error] = "Error saving Profile."
+      flash[:alert] = "Error saving Profile."
       redirect_to edit_profile_path
     end
   end
 
   def destroy
     if @profile.destroy
-      flash[:success] = "Profile saved successfully!"
+      flash[:notice] = "Profile deleted successfully!"
       redirect_to profiles_path
     else
-      flash.keep[:error] = "Error saving Profile."
+      flash[:alert] = "Error saving Profile."
       redirect_to edit_profile_path
     end
   end
@@ -48,7 +50,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profiles).permit(
+    params.permit(
       :first_name,
       :last_name,
       :email,
@@ -75,11 +77,30 @@ class ProfilesController < ApplicationController
       :activity_report,
       :personal_traits,
       :connection_score,
-      :interest_areas_list
+      :interest_areas_list,
+      custom_field_values_attributes: [
+        :id, :value, :custom_field_id
+      ]
     )
   end
 
   def find_profile
     @profile = Profile.find params[:id]
+  end
+
+  def load_cf_resources
+    @custom_fields_with_values = {}
+    cf_arel = CustomField.includes(:custom_field_values)
+
+    cf_arel.map do |cf|
+      cfv = cf.custom_field_values.find { |cfv| cfv.profile_id == @profile&.id }
+
+      @custom_fields_with_values[cf.id] = {
+        name: cf.name,
+        type: cf.value_type.to_sym,
+        cfv_id: cfv&.id,
+        value_for_current_profile: cfv&.value
+      }
+    end
   end
 end

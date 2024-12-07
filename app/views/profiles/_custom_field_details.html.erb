@@ -1,0 +1,49 @@
+<%#
+    {
+        :first_name=>"john", 
+        :last_name=>"doe", 
+        :email=>"john.doe@mail.com", 
+        :custom_field_values_attributes=>[
+            {:value=>"green", :custom_field_id=>2}
+        ]
+    }
+ %>
+
+<%# https://www.ombulabs.com/blog/learning/rails/nested-forms.html %>
+
+<h4>Custom Fields</h4>
+
+<% @custom_fields_with_values.each do |id, value_set| %>
+
+    <%= hidden_field_tag 'custom_field_values_attributes[][id]', value_set[:cfv_id] if value_set[:cfv_id] %>
+    <%= hidden_field_tag 'custom_field_values_attributes[][custom_field_id]', id  %>
+
+    <div class="row py-3">
+        <div class="col-4">
+            <span class='form-label text-body-secondary'>
+                <%= value_set[:name] %>
+            </span>
+        </div>
+        
+        <div class="col-6">
+            <% case value_set[:type] %>
+            <% when :text %>
+                <%= text_field_tag "custom_field_values_attributes[][value]",
+                                    value_set[:value_for_current_profile] || '',
+                                    placeholder: "Enter #{value_set[:name]}",
+                                    class: 'form-control' %>
+            <% when :number %>
+                <%= number_field_tag "custom_field_values_attributes[][value]",
+                                    value_set[:value_for_current_profile] || '',
+                                    placeholder: "Enter #{value_set[:name]}",
+                                    class: 'form-control' %>
+            <% when :boolean %>
+                <%= select_tag "custom_field_values_attributes[][value]",
+                                options_for_select([["Yes", "true"], ["No", "false"]], 
+                                                    value_set[:value_for_current_profile]),
+                                class: 'form-control' %>        
+            <% end %> 
+        </div>
+    </div>
+<% end %>
+    

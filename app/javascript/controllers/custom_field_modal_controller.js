@@ -8,10 +8,22 @@ import { Modal } from "bootstrap"
   // - Is this `new Modal(this.element)` Javascript OOPs?
 
 export default class extends Controller {
+  
+  static targets = ['modal']
+  static values = {
+    modalId: String
+  }
+  
   connect() {
     console.log("Connected", this.element)
-    this.modal = new Modal(this.element)
-    this.modal.show()
+    this.modalOpen = false
+  }
+
+  modalTargetConnected() {
+    if(!this.modalOpen && this.hasModalTarget) {
+      this.bootstrapModal.show()
+      this.modalOpen = true
+    }
   }
 
   hideBeforeRender(event) {
@@ -26,6 +38,15 @@ export default class extends Controller {
 
   isOpen() {
     return this.element.classList.contains("show")
+  }
+
+  get bootstrapModal() {
+    return this.getOrCreateBootstrapModal(this.modalIdValue)
+  }
+
+  getOrCreateBootstrapModal(id) {
+    var bsModal = document.getElementById(`${id}`);
+    return Modal.getOrCreateInstance(bsModal)
   }
 
 }

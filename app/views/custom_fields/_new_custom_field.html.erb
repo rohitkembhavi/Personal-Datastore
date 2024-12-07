@@ -1,12 +1,12 @@
 <%= turbo_frame_tag "new_custom_field" do %>
 
+<div data-controller="custom-field-modal" data-custom-field-modal-modal-id-value = "custom-field-form">
     <div class="modal fade" 
-        id="shareRecipeModal" 
+        id="custom-field-form" 
         tabindex="-1" 
         aria-labelledby="newItemRemoteModalLabel" 
-        aria-hidden="true" 
-        data-controller="custom-field-modal"
-        data-action="turbo:before-render@document->custom-field-modal#hideBeforeRender">
+        aria-hidden="true"
+        data-custom-field-modal-target="modal">
         
         <!-- TODO Find an easy way to for the data-action-->
 
@@ -23,5 +23,6 @@
             </div>
         </div>
     </div>
+</div>
 
 <% end %>

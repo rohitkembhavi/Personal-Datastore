@@ -1,0 +1,89 @@
+<h4>Relation</h4>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Relation
+        </span>
+    </div>
+    <div class="col-6">
+        <%= select_tag :relation,
+            options_for_select(Profile.relations.keys.map { |relation| [relation.capitalize, relation] }, @profile&.relation),
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            First Meet Details
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_area_tag :first_meet_details,
+            @profile&.first_meet_details || '',
+            placeholder: 'Enter the details of your First meet with this profile subject',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Last Meet Details
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_area_tag :last_meet_details,
+            @profile&.last_meet_details || '',
+            placeholder: 'Enter the details of your Last meet with this profile subject',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Qualities
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_area_tag :qualities,
+            @profile&.qualities || '',
+            placeholder: 'Enter Qualities',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Connection Score
+        </span>
+    </div>
+    <div class="col-6">
+        <%= select_tag :connection_score,
+            options_for_select(Profile.connection_scores.keys.map { |score| [score.capitalize, score] }, @profile&.connection_score),
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Interest Areas
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_area_tag :interest_areas_list,
+            @profile&.interest_areas_list || '',
+            placeholder: 'Enter the Interest Areas for this profile subject',
+            class: 'form-control'
+        %>
+    </div>
+</div>

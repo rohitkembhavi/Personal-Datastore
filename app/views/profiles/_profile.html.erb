@@ -9,7 +9,7 @@
                 <%= link_to edit_profile_path(profile), class: "btn btn-primary" do %>
                     Edit
                 <% end %>                
-                <%= button_to profile_path(profile), method: :delete, class: "btn" do %>
+                <%= button_to profile_path(profile), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn" do %>
                     <i class="bi bi-trash"></i>
                 <% end %>
             </div>

@@ -1,10 +1,27 @@
 class CustomFieldsController < ApplicationController
+
+  def index
+    @custom_fields = CustomField.all
+
+    redirect_to new_custom_field_path if @custom_fields.blank?
+  end
+
   def new
+    @custom_field = CustomField.new
   end
 
   def create
     cf = CustomField.new(custom_field_params)
     cf.save
+
+    flash[:notice] = "Custom Form Field saved successfully!"
+    redirect_to custom_fields_path
+  end
+
+  def destroy
+    custom_field = CustomField.find(params[:id])
+    custom_field.destroy
+    redirect_to custom_fields_path
   end
 
   private
@@ -14,6 +31,6 @@ class CustomFieldsController < ApplicationController
   end
 
   def custom_field_params
-    params.require(:custom_field).permit(:name, :value_type)
+    params.permit(:name, :value_type)
   end
 end

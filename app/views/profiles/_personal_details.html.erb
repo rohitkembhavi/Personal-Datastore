@@ -1,0 +1,180 @@
+<h4>Personal Details</h4>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            First Name*
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag :first_name,
+            @profile&.first_name || '',
+            placeholder: 'Enter first name',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Last Name*
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag :last_name,
+            @profile&.last_name || '',
+            placeholder: 'Enter Last name',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Email
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag :email,
+            @profile&.email || '',
+            type: "email",
+            placeholder: 'Enter Email',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Contact Number
+        </span>
+    </div>
+    <div class="col-6">
+        <%= number_field_tag :contact_no,
+            @profile&.contact_no || '',
+            placeholder: 'Enter contact',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Birth Date
+        </span>
+    </div>
+    <div class="col-6">
+        <%= date_field_tag :birth_date,
+            @profile&.birth_date || '',
+            placeholder: 'Enter DOB',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Gender
+        </span>
+    </div>
+    <div class="col-6">
+        <%= select_tag :gender,
+            options_for_select( Profile.genders.keys, @profile&.gender ),
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Country
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag :country,
+            @profile&.country || '',
+            placeholder: 'Enter Country',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            City
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag :city,
+            @profile&.city || '',
+            placeholder: 'Enter City',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Address
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_area_tag :address,
+            @profile&.address || '',
+            placeholder: 'Enter Adress',
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Blood Group
+        </span>
+    </div>
+    <div class="col-6">
+        <%= select_tag :blood_group,
+            options_for_select(Profile.blood_groups.keys, @profile&.blood_group),
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Mother's Name
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag :mother_name,
+            @profile&.mother_name || '',
+            placeholder: "Enter Mother's Name",
+            class: 'form-control'
+        %> 
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-4">
+        <span class='form-label text-body-secondary'>
+            Father's Name
+        </span>
+    </div>
+    <div class="col-6">
+        <%= text_field_tag :father_name,
+            @profile&.father_name || '',
+            placeholder: "Enter Father's Name",
+            class: 'form-control'
+        %> 
+    </div>
+</div>
