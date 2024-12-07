@@ -14,6 +14,7 @@ class CustomFieldsController < ApplicationController
     cf = CustomField.new(custom_field_params)
     cf.save
 
+    flash[:notice] = "Custom Form Field saved successfully!"
     redirect_to custom_fields_path
   end
 

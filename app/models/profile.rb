@@ -1,5 +1,5 @@
 class Profile < ApplicationRecord
-  has_many :custom_field_values
+  has_many :custom_field_values, dependent: :destroy
 
   accepts_nested_attributes_for :custom_field_values, allow_destroy: true
 

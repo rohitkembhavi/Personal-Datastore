@@ -15,10 +15,10 @@ class ProfilesController < ApplicationController
 
     # TODO fix flash not working issue
     if profile.save
-      flash[:success] = "Profile saved successfully!"
+      flash[:notice] = "Profile saved successfully!"
       redirect_to profiles_path
     else
-      flash.keep[:error] = "Error saving Profile."
+      flash[:alert] = "Error saving Profile."
       redirect_to new_profile_path
     end
   end
@@ -29,20 +29,20 @@ class ProfilesController < ApplicationController
   def update
     # TODO fix flash not working issue
     if @profile.update(profile_params)
-      flash[:success] = "Profile saved successfully!"
+      flash[:notice] = "Profile saved successfully!"
       redirect_to profiles_path
     else
-      flash.keep[:error] = "Error saving Profile."
+      flash[:alert] = "Error saving Profile."
       redirect_to edit_profile_path
     end
   end
 
   def destroy
     if @profile.destroy
-      flash[:success] = "Profile saved successfully!"
+      flash[:notice] = "Profile deleted successfully!"
       redirect_to profiles_path
     else
-      flash.keep[:error] = "Error saving Profile."
+      flash[:alert] = "Error saving Profile."
       redirect_to edit_profile_path
     end
   end

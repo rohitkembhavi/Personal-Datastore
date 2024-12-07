@@ -21,7 +21,7 @@
               <td><%= field.name %></td>
               <td><%= field.value_type %></td>
               <td>
-                  <%= button_to custom_field_path(field), method: :delete, class: "btn" do %>
+                  <%= button_to custom_field_path(field), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn" do %>
                       <i class="bi bi-trash"></i>
                   <% end %>
               </td>
